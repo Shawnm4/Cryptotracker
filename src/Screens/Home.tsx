@@ -1,29 +1,33 @@
-import { Dropdown, Space, Divider } from "antd";
+import { Dropdown, Space } from "antd";
 import { DownOutlined, FilterFilled } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import DataTabel from "./DataTabel";
-import useGetCoinData from "../Hooks/useGetCoinData";
+import useGetCoinData from "../Hooks/useGetAllCoinData";
 import { useState } from "react";
+import CoinDashboard from "./CoinDashboard";
 
 export default function Home() {
-  const [activeCoin, setActiveCoin] = useState(true);
+  const [activeCoin, setActiveCoin] = useState("");
   const { data: coinData } = useGetCoinData();
 
   function setActiveCoinForDashboard(coinObj: any) {
     setActiveCoin(coinObj);
   }
+  function clearActiveCoin() {
+    setActiveCoin("");
+  }
 
   return (
     <>
-      <header className="flex justify-center h-48 items-center font-medium">
+      <header className="flex justify-center h-48 items-center font-medium mb-10">
         <h1 style={{ fontFamily: "Inter" }} className="text-4xl text-center">
           <div>Explore the Top 50 Cryptocurrencies</div>
           <div>Rankings & Real-Time Market Data</div>
         </h1>
       </header>
-      <Divider />
-      {activeCoin ? (
-        <section className="flex justify-center mb-20">
+
+      {!activeCoin ? (
+        <section className="flex justify-center mb-20 ">
           <div className="w-5/6 rounded-md ">
             <div className=" text-2xl ">
               <Dropdown menu={{ items }}>
@@ -47,9 +51,10 @@ export default function Home() {
           </div>
         </section>
       ) : (
-        <section className="flex justify-center">
-          <div className="w-11/12 bg-slate-600"></div>
-        </section>
+        <CoinDashboard
+          activeCoin={activeCoin}
+          clearActiveCoin={clearActiveCoin}
+        />
       )}
     </>
   );

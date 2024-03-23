@@ -12,6 +12,7 @@ export default function TopNavBar() {
           CryptoTracker
         </div>
       </nav>
+
       <Divider />
     </>
   );
