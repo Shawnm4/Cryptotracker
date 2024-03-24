@@ -52,6 +52,11 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
     return newArr;
   }
 
+  const lineObjectsSubtracted = subtractMinFromData(
+    lineDataObjects,
+    minItem?.name as number
+  );
+
   return (
     <>
       <section
@@ -404,7 +409,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
       </section>
       <div
         style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
-        className="md:hidden h-screen text-white  "
+        className="md:hidden h-screen text-white ml-5 "
       >
         <div className="md:hidden ml-6">
           <div className="flex mb-5  ">
