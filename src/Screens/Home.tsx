@@ -5,6 +5,7 @@ import DataTabel from "./DataTabel";
 import useGetCoinData from "../Hooks/useGetAllCoinData";
 import { useState } from "react";
 import CoinDashboard from "./CoinDashboard";
+import { EColors } from "../Enums/EColors";
 
 export default function Home() {
   const [activeCoin, setActiveCoin] = useState("");
@@ -19,30 +20,30 @@ export default function Home() {
 
   return (
     <>
-      <header className="flex justify-center h-48 items-center font-medium mb-10">
-        <h1 style={{ fontFamily: "Inter" }} className="text-4xl text-center">
-          <div>Explore the Top 50 Cryptocurrencies</div>
-          <div>Rankings & Real-Time Market Data</div>
+      <header
+        style={{
+          backgroundColor: EColors.BACKGROUNDGRAY,
+          borderColor: EColors.BORDERGRAY,
+        }}
+        className="flex justify-center  items-center font-medium border-b  "
+      >
+        <h1
+          style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
+          className="text-3xl text-center"
+        >
+          <div>
+            Explore the Top 50 Cryptocurrencies Rankings & Real-Time Market Data
+          </div>
         </h1>
       </header>
 
       {!activeCoin ? (
-        <section className="flex justify-center mb-20 ">
+        <section
+          style={{ backgroundColor: "black" }}
+          className="flex justify-center h-screen"
+        >
           <div className="w-5/6 rounded-md ">
-            <div className=" text-2xl ">
-              <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>
-                    <div style={{ color: "#495057" }} className="">
-                      <FilterFilled />
-                    </div>
-                    Sort By
-                    <DownOutlined />
-                  </Space>
-                </a>
-              </Dropdown>
-            </div>
-            <div className=" cursor-pointer rounded-md shadow-xl mt-6 bg-gray-700">
+            <div className=" cursor-pointer rounded-md shadow-xl mt-10 bg-red-700">
               <DataTabel
                 setActiveCoinForDashboard={setActiveCoinForDashboard}
                 data={coinData?.data}
@@ -59,28 +60,3 @@ export default function Home() {
     </>
   );
 }
-
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: "Last Hour",
-  },
-  {
-    key: "2",
-    label: "Last 24 Hours",
-  },
-  {
-    key: "3",
-    label: "Last 7 Days",
-  },
-  {
-    key: "4",
-
-    label: "Last 30 Days",
-  },
-  {
-    key: "5",
-
-    label: "Last Year",
-  },
-];

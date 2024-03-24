@@ -7,7 +7,7 @@ export default function Layout() {
     <>
       <TopNavBar />
       <main className="flex">
-        <Content className="">
+        <Content className="w-full   ">
           <Outlet />
         </Content>
       </main>

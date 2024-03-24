@@ -4,16 +4,23 @@ import { EColors } from "../Enums/EColors";
 export default function TopNavBar() {
   return (
     <>
-      <nav className="h-20 flex items-end justify-center">
+      <nav
+        style={{
+          backgroundColor: "black",
+          borderColor: EColors.BORDERGRAY,
+        }}
+        className="h-32 flex items-center justify-center border-b border-white "
+      >
         <div
-          style={{ fontFamily: "Inter", color: EColors.PRIMARY }}
-          className="text-7xl font-bold"
+          style={{ fontFamily: "Orbitron", color: EColors.PRIMARY }}
+          className="text-7xl font-bold  "
         >
-          CryptoTracker
+          <div className="flex">
+            <div>Crypto</div>
+            <div className="text-white">Tracker</div>
+          </div>
         </div>
       </nav>
-
-      <Divider />
     </>
   );
 }
