@@ -5,7 +5,6 @@ import { useState } from "react";
 import CoinDashboard from "./CoinDashboard";
 import { EColors } from "../Enums/EColors";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
-import PrimaryButton from "../CustomAntTools/Buttons/PrimaryButton";
 
 export default function Home() {
   interface CoinObject {
@@ -125,11 +124,7 @@ export default function Home() {
   );
 }
 
-function CoinListItem({
-  coinData,
-  setActiveCoinForDashboard,
-  activeCoin,
-}: any) {
+function CoinListItem({ coinData, setActiveCoinForDashboard }: any) {
   return (
     <>
       <div

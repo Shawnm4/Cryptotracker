@@ -15,7 +15,6 @@ import { useState } from "react";
 import _ from "lodash";
 
 import { Tooltip as RechartsTooltip } from "recharts";
-import { Collapse, CollapseProps, ConfigProvider } from "antd";
 
 export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const { data: coinData } = useGetCoinDataById(activeCoin.id);
@@ -52,26 +51,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
 
     return newArr;
   }
-  const onChange = (key: string | string[]) => {
-    console.log(key);
-  };
 
-  const lineObjectsSubtracted = subtractMinFromData(
-    lineDataObjects,
-    minItem?.name as number
-  );
-  const items: CollapseProps["items"] = [
-    {
-      key: "1",
-      label: <div className="text-white">Market Data</div>,
-      children: <p>test</p>,
-    },
-    {
-      key: "2",
-      label: "About",
-      children: <p>testr</p>,
-    },
-  ];
   return (
     <>
       <section
