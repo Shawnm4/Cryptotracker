@@ -64,7 +64,7 @@ export default function Home() {
         )}
       </div>
       {/* Tablet */}
-      <div className=" hidden md:flex 2xl:inline-block">
+      <div className=" hidden md:flex 2xl:hidden">
         <header
           style={{
             backgroundColor: EColors.SECONDARYBACKGROUND,
