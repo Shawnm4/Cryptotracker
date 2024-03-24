@@ -7,13 +7,7 @@ import {
 import useGetCoinDataById from "../Hooks/useGetCoinDataById";
 import styles from "./CoinDashboard.module.css";
 import Tooltip from "../CustomAntTools/Buttons/ToolTips/ToolTip";
-import {
-  XAxis,
-  YAxis,
-  Tooltip as RechartsTooltip,
-  AreaChart,
-  Area,
-} from "recharts";
+import { XAxis, YAxis, AreaChart, Area } from "recharts";
 import useGetCoinGraphData from "../Hooks/useGetCoinGraphData";
 import { EColors } from "../Enums/EColors";
 import { useState } from "react";
@@ -76,7 +70,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                 }}
                 className=" self-center text-7xl"
               >
-                {activeCoin.name.toUpperCase()}
+                {activeCoin?.name?.toUpperCase()}
               </div>
             </div>
           </div>
@@ -99,13 +93,13 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                     </div>
                     <div className="text-2xl">
                       $
-                      {activeCoin.market_cap.toString().length > 9
+                      {activeCoin?.market_cap?.toString().length > 9
                         ? `${(
-                            Number(activeCoin.market_cap) / 1000000000
-                          ).toFixed(1)}B`
-                        : `${(Number(activeCoin.market_cap) / 1000000).toFixed(
-                            1
-                          )}M`}{" "}
+                            Number(activeCoin?.market_cap) / 1000000000
+                          )?.toFixed(1)}B`
+                        : `${(
+                            Number(activeCoin?.market_cap) / 1000000
+                          )?.toFixed(1)}M`}{" "}
                     </div>
                   </div>
                   <div>
@@ -117,7 +111,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                         </Tooltip>
                       </span>
                     </div>
-                    <div className="text-2xl">${activeCoin.ath}</div>
+                    <div className="text-2xl">${activeCoin?.ath}</div>
                   </div>
                   <div>
                     <div className="font-bold text-white flex gap-1 ">
@@ -131,7 +125,9 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                         </Tooltip>
                       </span>
                     </div>
-                    <div className="text-2xl">${activeCoin.atl.toFixed(2)}</div>
+                    <div className="text-2xl">
+                      ${activeCoin?.atl?.toFixed(2)}
+                    </div>
                   </div>
                   <div>
                     <div className="font-bold text-white flex gap-1 ">
@@ -160,7 +156,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                         </span>
                       </div>
                       <div className="text-2xl">
-                        {activeCoin.circulating_supply.toFixed(2)}
+                        {activeCoin?.circulating_supply?.toFixed(2)}
                       </div>
                     </div>
                   </div>
@@ -342,7 +338,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
           </div>
           <div
             style={{ backgroundColor: EColors.BACKGROUNDGRAY }}
-            className=" border text-white  rounded-lg border-gray-200 shadow-2xl my-20"
+            className=" border text-white  rounded-lg border-gray-200 shadow-2xl "
           >
             <div
               className={`${styles.description} p-10 text-lg`}
