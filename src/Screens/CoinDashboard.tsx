@@ -20,6 +20,13 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const { data: coinData } = useGetCoinDataById(activeCoin.id);
   const [graphDate, setGraphDate] = useState(7);
 
+  const [activeButton, setActiveButton] = useState(2);
+
+  function handleClick(buttonNum: number, date: number) {
+    setGraphDate(date);
+    setActiveButton(buttonNum);
+  }
+
   const { data: lineData } = useGetCoinGraphData(graphDate, activeCoin.id);
   interface LineDataObject {
     name: number;
@@ -63,7 +70,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
             <div className="">
               <PrimaryButton
                 onClick={() => clearActiveCoin()}
-                className="w-44 h-12 text-xl shadow-xl "
+                className="w-44 h-12 text-xl shadow-xl border-0 "
               >
                 &larr; Go Back
               </PrimaryButton>
@@ -309,11 +316,55 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
               className="border    rounded-lg border-gray-200 shadow-2xl p-4 pr-0"
             >
               <div className="  ">
-                <ul className="flex gap-8 text-lg font-bold text-white">
-                  <li onClick={() => changeGraphDate(1)}>1Day</li>
-                  <li onClick={() => changeGraphDate(7)}>1Week</li>
-                  <li onClick={() => changeGraphDate(30)}>1Month</li>
-                  <li onClick={() => changeGraphDate(365)}>1Year</li>
+                <ul className="flex gap-8  font-bold text-white cursor-pointer">
+                  <li>
+                    <PrimaryButton
+                      style={{
+                        backgroundColor:
+                          activeButton === 1 ? "black" : EColors.PRIMARY,
+                      }}
+                      className="border-0 shadow-x text-white"
+                      onClick={() => handleClick(1, 1)}
+                    >
+                      1Day
+                    </PrimaryButton>
+                  </li>
+                  <li>
+                    <PrimaryButton
+                      style={{
+                        backgroundColor:
+                          activeButton === 2 ? "black" : EColors.PRIMARY,
+                      }}
+                      className="border-0 shadow-xl text-white"
+                      onClick={() => handleClick(2, 7)}
+                    >
+                      1Week
+                    </PrimaryButton>
+                  </li>
+                  <li>
+                    <PrimaryButton
+                      style={{
+                        backgroundColor:
+                          activeButton === 3 ? "black" : EColors.PRIMARY,
+                      }}
+                      className="border-0  shadow-xl text-white"
+                      onClick={() => handleClick(3, 30)}
+                    >
+                      1Month
+                    </PrimaryButton>
+                  </li>
+                  <li>
+                    <PrimaryButton
+                      style={{
+                        backgroundColor:
+                          activeButton === 4 ? "black" : EColors.PRIMARY,
+                      }}
+                      className="border-0 shadow-xl text-white"
+                      onClick={() => handleClick(4, 365)}
+                    >
+                      1Year
+                    </PrimaryButton>
+                  </li>
                 </ul>
                 <div className="">
                   <div className="w-full">
