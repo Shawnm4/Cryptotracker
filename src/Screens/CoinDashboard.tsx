@@ -16,13 +16,7 @@ import _ from "lodash";
 
 import { Tooltip as RechartsTooltip } from "recharts";
 
-export default function CoinDashboard({
-  activeCoin,
-  clearActiveCoin,
-}: {
-  activeCoin: any;
-  clearActiveCoin: () => void;
-}) {
+export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const { data: coinData } = useGetCoinDataById(activeCoin.id);
   const [graphDate, setGraphDate] = useState(7);
 
