@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DataTabel from "./DataTabel";
 import useGetCoinData from "../Hooks/useGetAllCoinData";
 import { useState } from "react";
@@ -5,10 +6,14 @@ import CoinDashboard from "./CoinDashboard";
 import { EColors } from "../Enums/EColors";
 
 export default function Home() {
-  const [activeCoin, setActiveCoin] = useState("");
+  interface CoinObject {
+    id: string;
+  }
+
+  const [activeCoin, setActiveCoin] = useState<any>("");
   const { data: coinData } = useGetCoinData();
 
-  function setActiveCoinForDashboard(coinObj: any) {
+  function setActiveCoinForDashboard(coinObj: CoinObject) {
     setActiveCoin(coinObj);
   }
   function clearActiveCoin() {
@@ -19,7 +24,7 @@ export default function Home() {
     <>
       <header
         style={{
-          backgroundColor: EColors.BACKGROUNDGRAY,
+          backgroundColor: EColors.SECONDARYBACKGROUND,
           borderColor: EColors.BORDERGRAY,
         }}
         className="flex justify-center  items-center font-medium border-b  "

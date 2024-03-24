@@ -10,15 +10,17 @@ interface DataType {
   marketcap: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
   const columns: TableProps<DataType>["columns"] = [
     {
       title: "Rank",
       key: "rank",
-      onCell: (record, rowIndex) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onCell: (_record, _rowIndex) => {
         return {
           style: {
-            backgroundColor: EColors.BACKGROUNDGRAY,
+            backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
           },
         };
@@ -37,10 +39,11 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
     {
       title: "Name",
       key: "name",
-      onCell: (record, rowIndex) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onCell: (_record, _rowIndex) => {
         return {
           style: {
-            backgroundColor: EColors.BACKGROUNDGRAY,
+            backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
           },
         };
@@ -63,10 +66,11 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
     {
       title: "Price",
       key: "price",
-      onCell: (record, rowIndex) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onCell: (_record, _rowIndex) => {
         return {
           style: {
-            backgroundColor: EColors.BACKGROUNDGRAY,
+            backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
           },
         };
@@ -85,10 +89,11 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
     {
       title: "24 Hour Change",
       key: "pricechange",
-      onCell: (record, rowIndex) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onCell: (_record, _rowIndex) => {
         return {
           style: {
-            backgroundColor: EColors.BACKGROUNDGRAY,
+            backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
           },
         };
@@ -116,10 +121,11 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
     {
       title: "Market Cap",
       key: "action",
-      onCell: (record, rowIndex) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onCell: (_record, _rowIndex) => {
         return {
           style: {
-            backgroundColor: EColors.BACKGROUNDGRAY,
+            backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
           },
         };
@@ -144,22 +150,16 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
       theme={{
         components: {
           Table: {
-            headerBg: EColors.BACKGROUNDGRAY,
+            headerBg: EColors.SECONDARYBACKGROUND,
             headerColor: "white",
             headerSplitColor: "white",
-            rowExpandedBg: EColors.BACKGROUNDGRAY,
-            headerSortActiveBg: EColors.BACKGROUNDGRAY,
-            bodySortBg: EColors.BACKGROUNDGRAY,
             borderColor: EColors.BORDERGRAY,
-            footerColor: EColors.BACKGROUNDGRAY,
-            rowSelectedHoverBg: "red",
-            stickyScrollBarBg: EColors.BACKGROUNDGRAY,
+            stickyScrollBarBg: EColors.SECONDARYBACKGROUND,
           },
         },
       }}
     >
       <Table
-        style={{ backgroundColor: EColors.BACKGROUNDGRAY }}
         scroll={{ y: 700 }}
         columns={columns}
         dataSource={data}

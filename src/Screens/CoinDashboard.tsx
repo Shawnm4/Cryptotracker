@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import PrimaryButton from "../CustomAntTools/Buttons/PrimaryButton";
 import {
   InfoCircleOutlined,
@@ -13,24 +14,37 @@ import { EColors } from "../Enums/EColors";
 import { useState } from "react";
 import _ from "lodash";
 
-export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
+import { Tooltip as RechartsTooltip } from "recharts";
+
+export default function CoinDashboard({
+  activeCoin,
+  clearActiveCoin,
+}: {
+  activeCoin: any;
+  clearActiveCoin: () => void;
+}) {
   const { data: coinData } = useGetCoinDataById(activeCoin.id);
   const [graphDate, setGraphDate] = useState(7);
 
   const { data: lineData } = useGetCoinGraphData(graphDate, activeCoin.id);
+  interface LineDataObject {
+    name: number;
+  }
 
   const handleCreateLineData = (value: number) => {
     return { name: value };
   };
 
-  const lineDataObjects = lineData?.data?.prices?.map((item: any) => {
-    return handleCreateLineData(item[1]);
-  });
+  const lineDataObjects: LineDataObject[] = lineData?.data?.prices?.map(
+    (item: any) => {
+      return handleCreateLineData(item[1]);
+    }
+  );
 
   const minItem = _.minBy(lineDataObjects, "name");
 
-  function subtractMinFromData(array: any, min: any) {
-    const newArr = array?.map((item: any) => {
+  function subtractMinFromData(array: { name: number }[], min: number) {
+    const newArr = array?.map((item: { name: number }) => {
       return { name: item.name - min };
     });
 
@@ -38,7 +52,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   }
   const lineObjectsSubtracted = subtractMinFromData(
     lineDataObjects,
-    minItem?.name
+    minItem?.name as number
   );
 
   function changeGraphDate(date: number) {
@@ -47,7 +61,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   return (
     <>
       <section
-        style={{ backgroundColor: "black" }}
+        style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
         className="  flex justify-center  h-screen "
       >
         <div className="w-11/12 mt-14">
@@ -78,7 +92,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
           <div className="flex justify-between  mt-14">
             <div className="">
               <div
-                style={{ backgroundColor: EColors.BACKGROUNDGRAY }}
+                style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
                 className=" border  rounded-lg border-gray-200 shadow-2xl"
               >
                 <div className="grid grid-cols-3 grid-rows-3 p-10 gap-10 text-white">
@@ -297,7 +311,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
               </div>
             </div>
             <div
-              style={{ backgroundColor: EColors.BACKGROUNDGRAY }}
+              style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
               className="border    rounded-lg border-gray-200 shadow-2xl p-4 pr-0"
             >
               <div className="  ">
@@ -322,6 +336,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     >
                       <XAxis hide={true} dataKey="name" />
                       <YAxis hide={true} />
+                      <RechartsTooltip />
 
                       <Area
                         type="monotone"
@@ -337,8 +352,8 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
             </div>
           </div>
           <div
-            style={{ backgroundColor: EColors.BACKGROUNDGRAY }}
-            className=" border text-white  rounded-lg border-gray-200 shadow-2xl "
+            style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
+            className=" border text-white  rounded-lg border-gray-200 shadow-2xl mt-10"
           >
             <div
               className={`${styles.description} p-10 text-lg`}

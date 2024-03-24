@@ -1,4 +1,3 @@
-import { Divider } from "antd";
 import { EColors } from "../Enums/EColors";
 
 export default function TopNavBar() {
@@ -6,7 +5,7 @@ export default function TopNavBar() {
     <>
       <nav
         style={{
-          backgroundColor: "black",
+          backgroundColor: EColors.PRIMARYBACKGROUND,
           borderColor: EColors.BORDERGRAY,
         }}
         className="h-32 flex items-center justify-center border-b border-white "
