@@ -56,9 +56,6 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
     minItem?.name as number
   );
 
-  function changeGraphDate(date: number) {
-    setGraphDate(date);
-  }
   return (
     <>
       <section
