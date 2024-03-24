@@ -5,6 +5,7 @@ import { useState } from "react";
 import CoinDashboard from "./CoinDashboard";
 import { EColors } from "../Enums/EColors";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
+import PrimaryButton from "../CustomAntTools/Buttons/PrimaryButton";
 
 export default function Home() {
   interface CoinObject {
@@ -85,38 +86,57 @@ export default function Home() {
       </div>
 
       {/* CellPhone */}
-      <div className="md:hidden">
-        <header
-          style={{
-            backgroundColor: EColors.SECONDARYBACKGROUND,
-            borderColor: EColors.BORDERGRAY,
-          }}
-          className="flex justify-center  items-center font-medium border-b  "
-        >
-          <h1
-            style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
-            className="text-3xl text-center"
+      {!activeCoin ? (
+        <div className="md:hidden">
+          <header
+            style={{
+              backgroundColor: EColors.SECONDARYBACKGROUND,
+              borderColor: EColors.BORDERGRAY,
+            }}
+            className="flex justify-center  items-center font-medium border-b  "
           >
-            <div>
-              Explore the Top 50 Cryptocurrencies Rankings & Real-Time Market
-              Data
-            </div>
-          </h1>
-        </header>
-        <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
-          {coinData?.data?.map((coin: any) => (
-            <CoinListItem coinData={coin} />
-          ))}
+            <h1
+              style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
+              className="text-3xl text-center"
+            >
+              <div>
+                Explore the Top 50 Cryptocurrencies Rankings & Real-Time Market
+                Data
+              </div>
+            </h1>
+          </header>
+          <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
+            {coinData?.data?.map((coin: any) => (
+              <CoinListItem
+                coinData={coin}
+                setActiveCoinForDashboard={setActiveCoinForDashboard}
+                activeCoin={activeCoin}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <CoinDashboard
+          activeCoin={activeCoin}
+          clearActiveCoin={clearActiveCoin}
+        />
+      )}
     </>
   );
 }
 
-function CoinListItem({ coinData }: any) {
+function CoinListItem({
+  coinData,
+  setActiveCoinForDashboard,
+  activeCoin,
+}: any) {
   return (
     <>
-      <div className="border-b border-white " style={{ color: "white" }}>
+      <div
+        onClick={() => setActiveCoinForDashboard(coinData)}
+        className="border-b border-white "
+        style={{ color: "white" }}
+      >
         <div className="flex mx-4 gap-6 p-3">
           <div className="font-bold text-lg">#{coinData.market_cap_rank}</div>
           <div className="flex gap-2 ">

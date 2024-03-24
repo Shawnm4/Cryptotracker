@@ -15,6 +15,7 @@ import { useState } from "react";
 import _ from "lodash";
 
 import { Tooltip as RechartsTooltip } from "recharts";
+import { Collapse, CollapseProps, ConfigProvider } from "antd";
 
 export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const { data: coinData } = useGetCoinDataById(activeCoin.id);
@@ -51,16 +52,31 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
 
     return newArr;
   }
+  const onChange = (key: string | string[]) => {
+    console.log(key);
+  };
+
   const lineObjectsSubtracted = subtractMinFromData(
     lineDataObjects,
     minItem?.name as number
   );
-
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      label: <div className="text-white">Market Data</div>,
+      children: <p>test</p>,
+    },
+    {
+      key: "2",
+      label: "About",
+      children: <p>testr</p>,
+    },
+  ];
   return (
     <>
       <section
         style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
-        className="  flex justify-center  h-screen "
+        className=" hidden  2xl:flex justify-center h-screen "
       >
         <div className="w-11/12 mt-14">
           <div className="flex gap-96 ">
@@ -406,6 +422,124 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
           </div>
         </div>
       </section>
+      <div
+        style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
+        className="md:hidden h-screen text-white  "
+      >
+        <div className="md:hidden ml-6">
+          <div className="flex mb-5  ">
+            <PrimaryButton
+              onClick={() => clearActiveCoin()}
+              className="w-32 h-12 text-lg shadow-xl border-0 mt-3  "
+            >
+              &larr; Go Back
+            </PrimaryButton>
+          </div>
+          <div className="flex gap-2 text-white text-3xl ">
+            <div className="w-2/12">
+              <img src={activeCoin.image} />
+            </div>
+            <div className="font-bold self-center ">
+              {activeCoin.id.toUpperCase()}
+            </div>
+            <div className="self-center ">
+              {activeCoin.symbol.toUpperCase()}
+            </div>
+          </div>
+          <div className="mt-10">
+            <div className="text-2xl">
+              {activeCoin.symbol.toUpperCase()} Price
+            </div>
+            <div className="mt-2 text-4xl">
+              ${activeCoin.current_price.toFixed(2)}
+            </div>
+            <div className="flex mt-2 gap-2">
+              <div className="">
+                {activeCoin.price_change_24h > 0 ? (
+                  <div
+                    style={{ color: EColors.PRIMARY }}
+                    className="flex gap-1 text-xl"
+                  >
+                    <div>{activeCoin.price_change_24h.toFixed(2)}$</div>
+                    <div>
+                      <RiseOutlined />
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ color: "red" }} className="flex gap-1 text-xl">
+                    <div>
+                      {activeCoin.price_change_percentage_24h.toFixed(2)}$
+                    </div>
+                    <div style={{ color: "red" }}>
+                      <FallOutlined />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div>
+                {activeCoin.price_change_24h > 0 ? (
+                  <div
+                    style={{ color: EColors.PRIMARY }}
+                    className="flex gap-1 text-xl"
+                  >
+                    <div>({activeCoin.price_change_24h.toFixed(2)}%)</div>
+                  </div>
+                ) : (
+                  <div style={{ color: "red" }} className="flex gap-1 text-xl">
+                    <div>
+                      {activeCoin.price_change_percentage_24h.toFixed(2)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className=" font-bold mt-10 text-3xl">Market Stats</div>
+        </div>
+        <div className=" mt-6 flex justify-center">
+          <div
+            style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
+            className="w-11/12 flex justify-center"
+          >
+            <div className="grid grid-cols-2 grid-rows-4 gap-20 my-5  p-5 ">
+              <div>
+                <div className=" font-bold text-xl whitespace-nowrap ">
+                  Market Cap
+                </div>
+                <div>adsfa</div>
+              </div>
+              <div>
+                <div className="font-bold text-xl whitespace-nowrap ">
+                  Volume
+                </div>
+                <div>sadsad</div>
+              </div>
+              <div>
+                <div className=" font-bold text-xl  ">Circulating Supply</div>
+                <div>dasdas</div>
+              </div>
+              <div>
+                <div className=" font-bold text-xl whitespace-nowrap ">
+                  Rank
+                </div>
+                <div>ATH</div>
+              </div>
+              <div>
+                <div className="text-xl  font-bold ">Price Change(1H)</div>
+                <div>dsadsa</div>
+              </div>
+              <div>
+                <div className="text-xl font-bold ">Price Change(24H)</div>
+                <div>dasdsa</div>
+              </div>
+              <div>
+                <div className="text-xl font-bold  ">Price Change(7D)</div>
+                <div>dasd</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
