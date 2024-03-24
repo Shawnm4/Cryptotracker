@@ -133,7 +133,6 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
             {record.market_cap.toString().length > 9
               ? `$${(Number(record.market_cap) / 1000000000).toFixed(1)}B`
               : `$${(Number(record.market_cap) / 1000000).toFixed(1)}M`}{" "}
-            .
           </div>
         );
       },
