@@ -409,7 +409,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
       </section>
       <div
         style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
-        className="md:hidden h-screen text-white ml-5 "
+        className="md:hidden h-screen text-white  "
       >
         <div className="md:hidden ml-6">
           <div className="flex mb-5  ">
@@ -486,7 +486,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
             style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
             className="w-11/12 flex justify-center"
           >
-            <div className="grid grid-cols-2 grid-rows-4 gap-20 my-5  p-5 ">
+            <div className="grid grid-cols-2 grid-rows-4 gap-20   p-5 ">
               <div>
                 <div className=" font-bold text-xl whitespace-nowrap ">
                   Market Cap
