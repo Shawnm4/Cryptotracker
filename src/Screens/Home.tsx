@@ -90,21 +90,25 @@ export default function Home() {
                   </div>
                 </h1>
               </header>
+              <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
+                {coinData?.data?.map((coin: any) => (
+                  <CoinListItem
+                    coinData={coin}
+                    setActiveCoinForDashboard={setActiveCoinForDashboard}
+                    activeCoin={activeCoin}
+                  />
+                ))}
+              </div>
             </div>
-            <div
+            {/* <div
               style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
               className="flex justify-center"
             >
               <div
                 className="text-white  mt-10 "
                 style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-              >
-                <DataTabel
-                  setActiveCoinForDashboard={setActiveCoinForDashboard}
-                  data={coinData?.data}
-                />
-              </div>
-            </div>
+              ></div>
+            </div> */}
           </>
         ) : (
           <>
@@ -183,22 +187,26 @@ function CoinListItem({ coinData, setActiveCoinForDashboard }: any) {
         className="border-b border-white "
         style={{ color: "white" }}
       >
-        <div className="flex mx-4 gap-6 p-3">
-          <div className="font-bold text-lg">#{coinData.market_cap_rank}</div>
+        <div className="flex mx-4 gap-6 p-3 md:flex justify-between">
+          <div className=" md:text-2xl font-bold text-lg">
+            #{coinData.market_cap_rank}
+          </div>
           <div className="flex gap-2 ">
             <div className="w-2/12">
               <img src={coinData.image} />
             </div>
             <div>
-              <div className=" font-bold text-lg">
+              <div className="md:text-xl font-bold text-lg">
                 {coinData.name.toUpperCase()}
               </div>
-              <div className="">{coinData.symbol.toUpperCase()}</div>
+              <div className="md:text-lg">{coinData.symbol.toUpperCase()}</div>
             </div>
           </div>
           <div>
-            <div className="text-lg">${coinData.current_price.toFixed(2)}</div>
-            <div className="text-lg">
+            <div className="md:text-2xl ">
+              ${coinData.current_price.toFixed(2)}
+            </div>
+            <div className="md:text-2xl">
               {coinData.price_change_percentage_24h > 0 ? (
                 <div
                   style={{ color: EColors.PRIMARY }}
