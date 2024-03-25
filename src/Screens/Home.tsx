@@ -6,6 +6,7 @@ import CoinDashboard from "./CoinDashboard";
 import { EColors } from "../Enums/EColors";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 import MobileCoinDashboard from "./MobileCoinDashboard";
+import TabletCoinDashboard from "./TabletCoinDashboard";
 
 export default function Home() {
   interface CoinObject {
@@ -73,8 +74,8 @@ export default function Home() {
         )}
       </div>
       {/* Tablet */}
-      {/* <div className=" hidden md:inline-block w-full 2xl:hidden ">
-        {!activeCoin ? (
+      <div className=" hidden md:inline-block w-full 2xl:hidden ">
+        {!mobileActiveCoin ? (
           <>
             <div>
               <header
@@ -102,7 +103,9 @@ export default function Home() {
                 {coinData?.data?.map((coin: any) => (
                   <CoinListItem
                     coinData={coin}
-                    setActiveCoinForDashboard={setActiveCoinForDashboard}
+                    setMobileActiveCoinForDashboard={
+                      setMobileActiveCoinForDashboard
+                    }
                   />
                 ))}
               </div>
@@ -119,32 +122,13 @@ export default function Home() {
           </>
         ) : (
           <>
-            <div className="w-full">
-              <header
-                style={{
-                  backgroundColor: EColors.SECONDARYBACKGROUND,
-                  borderColor: EColors.BORDERGRAY,
-                }}
-                className="flex w-full justify-center  items-center font-medium border-b  "
-              >
-                <h1
-                  style={{
-                    color: "white",
-                    fontFamily: "Inter",
-                    fontWeight: 200,
-                  }}
-                  className="text-3xl text-center"
-                >
-                  <div>
-                    Explore the Top 50 Cryptocurrencies Rankings & Real-Time
-                    Market Data
-                  </div>
-                </h1>
-              </header>
-            </div>
+            <TabletCoinDashboard
+              activeCoin={mobileActiveCoin}
+              clearMobileActiveCoin={clearMobileActiveCoin}
+            />
           </>
         )}
-      </div> */}
+      </div>
 
       {/* CellPhone */}
       {!mobileActiveCoin ? (
