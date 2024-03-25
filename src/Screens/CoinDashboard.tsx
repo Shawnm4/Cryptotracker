@@ -408,7 +408,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
         </div>
       </section>
       <div
-        style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
+        style={{ height: "100%", backgroundColor: EColors.PRIMARYBACKGROUND }}
         className="md:hidden h-screen text-white  "
       >
         <div className="md:hidden ml-6">
@@ -486,41 +486,156 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
             style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
             className="w-11/12 flex justify-center"
           >
-            <div className="grid grid-cols-2 grid-rows-4 gap-20   p-5 ">
+            <div className="grid grid-cols-2 grid-rows-4 gap-14   p-6 ">
               <div>
                 <div className=" font-bold text-xl whitespace-nowrap ">
                   Market Cap
                 </div>
-                <div>adsfa</div>
+                <div className="text-2xl whitespace-nowrap">
+                  $
+                  {activeCoin?.market_cap?.toString().length > 9
+                    ? `${(Number(activeCoin?.market_cap) / 1000000000)?.toFixed(
+                        1
+                      )}B`
+                    : `${(Number(activeCoin?.market_cap) / 1000000)?.toFixed(
+                        1
+                      )}M`}{" "}
+                </div>
               </div>
               <div>
-                <div className="font-bold text-xl whitespace-nowrap ">
-                  Volume
+                <div className="font-bold text-xl whitespace-nowrap ">ATH</div>
+                <div className="text-2xl whitespace-nowrap">
+                  ${activeCoin?.ath.toFixed(2)}
                 </div>
-                <div>sadsad</div>
               </div>
               <div>
                 <div className=" font-bold text-xl  ">Circulating Supply</div>
-                <div>dasdas</div>
+                <div className="text-2xl whitespace-nowrap">
+                  {activeCoin?.circulating_supply?.toFixed(2)}
+                </div>
               </div>
               <div>
                 <div className=" font-bold text-xl whitespace-nowrap ">
                   Rank
                 </div>
-                <div>ATH</div>
+                <div className="text-4xl whitespace-nowrap">
+                  #{activeCoin.market_cap_rank}
+                </div>
               </div>
               <div>
-                <div className="text-xl  font-bold ">Price Change(1H)</div>
-                <div>dsadsa</div>
+                <div className="text-xl  font-bold ">Price Change(1D)</div>
+                <div className="text-2xl whitespace-nowrap">
+                  {coinData?.data?.market_data?.price_change_percentage_24h?.toFixed(
+                    2
+                  ) > 0 ? (
+                    <span className="text-green-500">
+                      {coinData?.data?.market_data?.price_change_percentage_24h?.toFixed(
+                        2
+                      )}
+                      %
+                      <RiseOutlined />
+                    </span>
+                  ) : (
+                    <span className="text-red-500">
+                      {coinData?.data?.market_data?.price_change_percentage_24h?.toFixed(
+                        2
+                      )}
+                      %
+                      <FallOutlined />
+                    </span>
+                  )}
+                </div>
               </div>
               <div>
-                <div className="text-xl font-bold ">Price Change(24H)</div>
-                <div>dasdsa</div>
+                <div className="text-xl font-bold ">Price Change(7D)</div>
+                <div className="text-2xl whitespace-nowrap">
+                  {coinData?.data?.market_data?.price_change_percentage_7d?.toFixed(
+                    2
+                  ) > 0 ? (
+                    <span className="text-green-500">
+                      {coinData?.data?.market_data?.price_change_percentage_7d?.toFixed(
+                        2
+                      )}
+                      %
+                      <RiseOutlined />
+                    </span>
+                  ) : (
+                    <span className="text-red-500">
+                      {coinData?.data?.market_data?.price_change_percentage_7d?.toFixed(
+                        2
+                      )}
+                      %
+                      <FallOutlined />
+                    </span>
+                  )}
+                </div>
               </div>
               <div>
-                <div className="text-xl font-bold  ">Price Change(7D)</div>
-                <div>dasd</div>
+                <div className="text-xl font-bold  ">Price Change(30D)</div>
+                <div className="text-2xl whitespace-nowrap">
+                  {coinData?.data?.market_data?.price_change_percentage_30d?.toFixed(
+                    2
+                  ) > 0 ? (
+                    <span className="text-green-500">
+                      {coinData?.data?.market_data?.price_change_percentage_30d?.toFixed(
+                        2
+                      )}
+                      %
+                      <RiseOutlined />
+                    </span>
+                  ) : (
+                    <span className="text-red-500">
+                      {coinData?.data?.market_data?.price_change_percentage_30d?.toFixed(
+                        2
+                      )}
+                      %
+                      <FallOutlined />
+                    </span>
+                  )}
+                </div>
               </div>
+              <div>
+                <div className="text-xl font-bold  ">Price Change(1Y)</div>
+                <div className="text-2xl whitespace-nowrap">
+                  {coinData?.data?.market_data?.price_change_percentage_1y?.toFixed(
+                    2
+                  ) > 0 ? (
+                    <span className="text-green-500">
+                      {coinData?.data?.market_data?.price_change_percentage_1y?.toFixed(
+                        2
+                      )}
+                      %
+                      <RiseOutlined />
+                    </span>
+                  ) : (
+                    <span className="text-red-500">
+                      {coinData?.data?.market_data?.price_change_percentage_1y?.toFixed(
+                        2
+                      )}
+                      %
+                      <FallOutlined />
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" mt-6 flex justify-center">
+          <div
+            style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
+            className="w-11/12 flex justify-center"
+          >
+            <div
+              style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
+              className=" border text-white  rounded-lg border-gray-200 shadow-2xl mt-10"
+            >
+              <div
+                className={`${styles.description} text-xl p-10 `}
+                dangerouslySetInnerHTML={{
+                  __html: coinData?.data?.description?.en,
+                }}
+              />
             </div>
           </div>
         </div>
