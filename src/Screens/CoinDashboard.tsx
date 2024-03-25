@@ -622,10 +622,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
           </div>
         </div>
         <div className=" mt-6 flex justify-center">
-          <div
-            style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-            className="w-11/12 flex justify-center"
-          >
+          <div className="w-11/12 flex justify-center">
             <div
               style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
               className=" border text-white  rounded-lg border-gray-200 shadow-2xl mt-10"
