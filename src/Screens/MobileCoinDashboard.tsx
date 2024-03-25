@@ -86,7 +86,7 @@ any) {
       <div className=" mt-6 flex justify-center">
         <div
           style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-          className="w-11/12 flex justify-center"
+          className="w-11/12 flex justify-center border  rounded-lg border-gray-200 shadow-2xl"
         >
           <div className="grid grid-cols-2 grid-rows-4 gap-14   p-6 ">
             <div>
