@@ -72,7 +72,9 @@ any) {
                 </div>
               ) : (
                 <div style={{ color: "red" }} className="flex gap-1 text-xl">
-                  <div>{activeCoin.price_change_percentage_24h.toFixed(2)}</div>
+                  <div>
+                    ({activeCoin.price_change_percentage_24h.toFixed(2)}%)
+                  </div>
                 </div>
               )}
             </div>
