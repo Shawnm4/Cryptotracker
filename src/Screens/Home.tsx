@@ -13,15 +13,23 @@ export default function Home() {
   }
 
   const [activeCoin, setActiveCoin] = useState<any>("");
+  const [mobileActiveCoin, setMobileActiveCoin] = useState<any>("");
   const { data: coinData } = useGetCoinData();
 
   function setActiveCoinForDashboard(coinObj: CoinObject) {
     setActiveCoin(coinObj);
   }
+  function setMobileActiveCoinForDashboard(coinObj: CoinObject) {
+    console.log(coinObj);
+    setMobileActiveCoin(coinObj);
+  }
   function clearActiveCoin() {
     setActiveCoin("");
   }
 
+  function clearMobileActiveCoin() {
+    setMobileActiveCoin("");
+  }
   return (
     <>
       <div className="hidden  2xl:inline-block">
@@ -65,7 +73,7 @@ export default function Home() {
         )}
       </div>
       {/* Tablet */}
-      <div className=" hidden md:inline-block w-full 2xl:hidden ">
+      {/* <div className=" hidden md:inline-block w-full 2xl:hidden ">
         {!activeCoin ? (
           <>
             <div>
@@ -95,12 +103,11 @@ export default function Home() {
                   <CoinListItem
                     coinData={coin}
                     setActiveCoinForDashboard={setActiveCoinForDashboard}
-                    activeCoin={activeCoin}
                   />
                 ))}
               </div>
             </div>
-            {/* <div
+            <div
               style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
               className="flex justify-center"
             >
@@ -108,7 +115,7 @@ export default function Home() {
                 className="text-white  mt-10 "
                 style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
               ></div>
-            </div> */}
+            </div>
           </>
         ) : (
           <>
@@ -137,10 +144,10 @@ export default function Home() {
             </div>
           </>
         )}
-      </div>
+      </div> */}
 
       {/* CellPhone */}
-      {!activeCoin ? (
+      {!mobileActiveCoin ? (
         <div className="md:hidden">
           <header
             style={{
@@ -163,27 +170,28 @@ export default function Home() {
             {coinData?.data?.map((coin: any) => (
               <CoinListItem
                 coinData={coin}
-                setActiveCoinForDashboard={setActiveCoinForDashboard}
-                activeCoin={activeCoin}
+                setMobileActiveCoinForDashboard={
+                  setMobileActiveCoinForDashboard
+                }
               />
             ))}
           </div>
         </div>
       ) : (
         <MobileCoinDashboard
-          activeCoin={activeCoin}
-          clearActiveCoin={clearActiveCoin}
+          activeCoin={mobileActiveCoin}
+          clearMobileActiveCoin={clearMobileActiveCoin}
         />
       )}
     </>
   );
 }
 
-function CoinListItem({ coinData, setActiveCoinForDashboard }: any) {
+function CoinListItem({ coinData, setMobileActiveCoinForDashboard }: any) {
   return (
     <>
       <div
-        onClick={() => setActiveCoinForDashboard(coinData)}
+        onClick={() => setMobileActiveCoinForDashboard(coinData)}
         className="border-b border-white "
         style={{ color: "white" }}
       >

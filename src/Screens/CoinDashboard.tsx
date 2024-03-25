@@ -15,7 +15,6 @@ import { useState } from "react";
 import _ from "lodash";
 
 import { Tooltip as RechartsTooltip } from "recharts";
-import MobileCoinDashboard from "./MobileCoinDashboard";
 
 export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const { data: coinData } = useGetCoinDataById(activeCoin.id);
@@ -408,11 +407,6 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
           </div>
         </div>
       </section>
-      <MobileCoinDashboard
-        coinData={coinData}
-        activeCoin={activeCoin}
-        clearActiveCoin={clearActiveCoin}
-      />
     </>
   );
 }

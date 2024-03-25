@@ -2,13 +2,14 @@ import PrimaryButton from "../CustomAntTools/Buttons/PrimaryButton";
 import { EColors } from "../Enums/EColors";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 import styles from "./MobileCoinDashboard.module.css";
+import useGetCoinDataById from "../Hooks/useGetCoinDataById";
 
 export default function MobileCoinDashboard({
   activeCoin,
-  clearActiveCoin,
-  coinData,
+  clearMobileActiveCoin,
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 any) {
+  const { data: coinData } = useGetCoinDataById(activeCoin.id);
   return (
     <div
       style={{ height: "100%", backgroundColor: EColors.PRIMARYBACKGROUND }}
@@ -17,7 +18,7 @@ any) {
       <div className="md:hidden ml-6">
         <div className="flex mb-5  ">
           <PrimaryButton
-            onClick={() => clearActiveCoin()}
+            onClick={() => clearMobileActiveCoin()}
             className="w-32 h-12 text-lg shadow-xl border-0 mt-3  "
           >
             &larr; Go Back
