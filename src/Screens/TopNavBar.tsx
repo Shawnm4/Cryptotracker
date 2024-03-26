@@ -16,8 +16,8 @@ export default function TopNavBar() {
           className="text-7xl font-bold  "
         >
           <div className="flex">
-            <div>Crypto</div>
-            <div className="text-white">Tracker</div>
+            <div>Chain</div>
+            <div className="text-white">Sight</div>
           </div>
         </div>
       </nav>
@@ -31,8 +31,8 @@ export default function TopNavBar() {
           className="flex w-full justify-center items-center border-b border-white  h-10"
         >
           <div className=" flex text-2xl" style={{ fontFamily: "Orbitron" }}>
-            <div style={{ color: EColors.PRIMARY }}>Crypto</div>
-            <div style={{ color: "white" }}>Tracker</div>
+            <div style={{ color: EColors.PRIMARY }}>Chain</div>
+            <div style={{ color: "white" }}>Sight</div>
           </div>
         </div>
       </nav>
@@ -47,8 +47,8 @@ export default function TopNavBar() {
           className="flex justify-center items-center border-b border-white  h-10"
         >
           <div className="flex text-2xl" style={{ fontFamily: "Orbitron" }}>
-            <div style={{ color: EColors.PRIMARY }}>Crypto</div>
-            <div style={{ color: "white" }}>Tracker</div>
+            <div style={{ color: EColors.PRIMARY }}>Chain</div>
+            <div style={{ color: "white" }}>Sight</div>
           </div>
         </div>
       </nav>

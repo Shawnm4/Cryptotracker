@@ -94,7 +94,6 @@ any) {
                 Market Cap
               </div>
               <div className="text-2xl whitespace-nowrap">
-                $
                 {activeCoin?.market_cap?.toString().length > 9
                   ? `${(Number(activeCoin?.market_cap) / 1000000000)?.toFixed(
                       1

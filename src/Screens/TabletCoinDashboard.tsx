@@ -69,7 +69,7 @@ any) {
                 {activeCoin.symbol.toUpperCase()} Price
               </div>
               <div className="mt-2 text-4xl">
-                ${activeCoin.current_price.toFixed(2)}
+                ${activeCoin.current_price.toLocaleString()}
               </div>
               <div className="flex mt-2 gap-2">
                 <div className="">
@@ -142,13 +142,19 @@ any) {
                 </div>
               </div>
               <div>
-                <div className="md:text-4xl mb-2">ATH</div>
-                <div className="text-3xl">${activeCoin?.ath.toFixed(2)}</div>
+                <div className="md:text-4xl flex mb-2">
+                  <div className="mr-5">All Time High</div>
+                </div>
+                <div className="text-3xl">
+                  ${Number(activeCoin?.ath).toLocaleString()}
+                </div>
               </div>
               <div>
-                <div className="md:text-4xl mb-2">Circulating Supply</div>
+                <div className="md:text-4xl  mb-2">
+                  <div className="flex items-center">Circulating Supply</div>
+                </div>
                 <div className="text-3xl">
-                  {activeCoin?.circulating_supply?.toFixed(2)}
+                  {Number(activeCoin?.circulating_supply).toLocaleString()}
                 </div>
               </div>
               <div>
