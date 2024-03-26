@@ -7,6 +7,7 @@ import { EColors } from "../Enums/EColors";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 import MobileCoinDashboard from "./MobileCoinDashboard";
 import TabletCoinDashboard from "./TabletCoinDashboard";
+import lodash from "lodash";
 
 export default function Home() {
   interface CoinObject {
@@ -102,6 +103,7 @@ export default function Home() {
               <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
                 {coinData?.data?.map((coin: any) => (
                   <CoinListItem
+                    key={lodash.uniqueId()}
                     coinData={coin}
                     setMobileActiveCoinForDashboard={
                       setMobileActiveCoinForDashboard
@@ -153,6 +155,7 @@ export default function Home() {
           <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
             {coinData?.data?.map((coin: any) => (
               <CoinListItem
+                key={lodash.uniqueId()}
                 coinData={coin}
                 setMobileActiveCoinForDashboard={
                   setMobileActiveCoinForDashboard

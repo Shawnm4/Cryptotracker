@@ -8,7 +8,7 @@ import {
 import useGetCoinDataById from "../Hooks/useGetCoinDataById";
 import styles from "./MobileCoinDashboard.module.css";
 import Tooltip from "../CustomAntTools/Buttons/ToolTips/ToolTip";
-import { XAxis, YAxis, AreaChart, Area } from "recharts";
+import { XAxis, YAxis, AreaChart, Area, ResponsiveContainer } from "recharts";
 import useGetCoinGraphData from "../Hooks/useGetCoinGraphData";
 import { EColors } from "../Enums/EColors";
 import { useState } from "react";
@@ -30,28 +30,31 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const { data: lineData } = useGetCoinGraphData(graphDate, activeCoin.id);
   interface LineDataObject {
     name: number;
+    date: number;
   }
 
-  const handleCreateLineData = (value: number) => {
-    return { name: value };
+  const handleCreateLineData = (date: number, value: number) => {
+    return { name: value, date: date };
   };
 
   const lineDataObjects: LineDataObject[] = lineData?.data?.prices?.map(
     (item: any) => {
-      return handleCreateLineData(item[1]);
+      return handleCreateLineData(item[0], item[1]);
     }
   );
 
   const minItem = _.minBy(lineDataObjects, "name");
 
-  function subtractMinFromData(array: { name: number }[], min: number) {
-    const newArr = array?.map((item: { name: number }) => {
-      return { name: item.name - min };
+  function subtractMinFromData(
+    array: { name: number; date: number }[],
+    min: number
+  ) {
+    const newArr = array?.map((item: { name: number; date: number }) => {
+      return { name: item.name - min, date: item.date };
     });
 
     return newArr;
   }
-
   const lineObjectsSubtracted = subtractMinFromData(
     lineDataObjects,
     minItem?.name as number
@@ -311,7 +314,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
             </div>
             <div
               style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-              className="border    rounded-lg border-gray-200 shadow-2xl p-4 pr-0"
+              className="border w-1/2   rounded-lg border-gray-200 shadow-2xl p-4 pr-0"
             >
               <div className="  ">
                 <ul className="flex gap-8  font-bold text-white cursor-pointer">
@@ -364,31 +367,71 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     </PrimaryButton>
                   </li>
                 </ul>
-                <div className="">
-                  <div className="w-full">
-                    <AreaChart
-                      width={900}
-                      height={300}
-                      data={lineObjectsSubtracted}
-                      margin={{
-                        top: 10,
-                        right: 30,
-                        left: 0,
-                        bottom: 0,
-                      }}
-                    >
-                      <XAxis hide={true} dataKey="name" />
-                      <YAxis hide={true} />
-                      <RechartsTooltip />
+                <div className=" ">
+                  <div>
+                    <ResponsiveContainer width="100%" aspect={3}>
+                      <AreaChart
+                        data={lineObjectsSubtracted}
+                        margin={{
+                          top: 10,
+                          right: 30,
+                          left: 0,
+                          bottom: 0,
+                        }}
+                      >
+                        <XAxis hide={true} dataKey="name" />
+                        <YAxis hide={true} />
+                        <RechartsTooltip
+                          content={({ payload }) => {
+                            if (payload?.length) {
+                              const item = payload[0].payload;
 
-                      <Area
-                        type="monotone"
-                        dataKey="name"
-                        stroke={EColors.PRIMARY}
-                        fill={EColors.PRIMARY}
-                        strokeWidth={2}
-                      />
-                    </AreaChart>
+                              return (
+                                <>
+                                  <div
+                                    className="p-2 border  rounded-lg border-gray-200 shadow-2xl"
+                                    style={{
+                                      backgroundColor:
+                                        EColors.PRIMARYBACKGROUND,
+                                      color: "white",
+                                    }}
+                                  >
+                                    <div>
+                                      Date:{" "}
+                                      {new Date(item.date).toLocaleDateString(
+                                        "en-US",
+                                        {
+                                          month: "numeric",
+                                          day: "numeric",
+                                          year: "numeric",
+                                        }
+                                      )}
+                                    </div>
+                                    <div>
+                                      Price: $
+                                      {(
+                                        Number(Number(item.name).toFixed(2)) +
+                                        Number(minItem?.name)
+                                      ).toFixed(2)}
+                                    </div>
+                                  </div>
+                                </>
+                              );
+                            }
+
+                            return null;
+                          }}
+                        />
+
+                        <Area
+                          type="monotone"
+                          dataKey="name"
+                          stroke={EColors.PRIMARY}
+                          fill={EColors.PRIMARY}
+                          strokeWidth={2}
+                        />
+                      </AreaChart>
+                    </ResponsiveContainer>
                   </div>
                 </div>
               </div>
