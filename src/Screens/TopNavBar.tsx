@@ -9,7 +9,7 @@ export default function TopNavBar() {
           borderColor: EColors.BORDERGRAY,
           filter: "saturate(-30%)",
         }}
-        className="hidden  2xl:flex h-32 items-center justify-center border-b border-white "
+        className="hidden  2xl:flex h-32 items-center justify-center  border-white "
       >
         <div
           style={{ fontFamily: "Orbitron", color: EColors.PRIMARY }}

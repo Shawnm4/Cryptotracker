@@ -71,7 +71,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
             <div className="">
               <PrimaryButton
                 onClick={() => clearActiveCoin()}
-                className="w-44 h-12 text-xl shadow-xl border-0 "
+                className="w-44 h-12 text-xl shadow-xl border-0  rounded-none"
               >
                 &larr; Go Back
               </PrimaryButton>
@@ -81,25 +81,30 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
               <div
                 style={{
                   color: "white",
-                  fontFamily: "Inter",
-                  fontWeight: "bold",
+                  fontFamily: "Orbitron",
                 }}
-                className=" self-center text-7xl"
+                className=" font-bold self-center text-7xl drop-shadow-2xl"
               >
                 {activeCoin?.name?.toUpperCase()}
               </div>
             </div>
           </div>
 
-          <div className="flex justify-between  mt-14">
+          <div
+            style={{ fontFamily: "Inter" }}
+            className="flex justify-between  mt-14"
+          >
             <div className="">
               <div
                 style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-                className=" border  rounded-lg border-gray-200 shadow-2xl"
+                className="   rounded-lg border-gray-200 shadow-2xl"
               >
                 <div className="grid grid-cols-3 grid-rows-3 p-10 gap-10 text-white">
                   <div>
-                    <div className="font-bold text-white flex gap-1">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1"
+                    >
                       <div>Market Cap</div>
                       <span>
                         <Tooltip title="Crypto market cap is the total value of all cryptocurrencies, calculated by multiplying each coin's current price by its circulating supply. It measures the market's size and dominance of different coins.">
@@ -119,7 +124,10 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>All Time High</div>
                       <span>
                         <Tooltip title="The all-time high (ATH) of a cryptocurrency refers to the highest price it has ever reached in its history. This metric is often used by investors to gauge a coin's performance and potential.">
@@ -130,7 +138,10 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                     <div className="text-2xl">${activeCoin?.ath}</div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>All Time Low</div>
                       <span>
                         <Tooltip
@@ -146,7 +157,10 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>Rank</div>
                       <span>
                         <Tooltip
@@ -163,7 +177,10 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                   </div>
                   <div>
                     <div>
-                      <div className="font-bold text-white flex gap-1 ">
+                      <div
+                        style={{ fontWeight: "300" }}
+                        className=" text-white flex gap-1 "
+                      >
                         <div>Circulating Supply</div>
                         <span>
                           <Tooltip title="Circulating supply refers to the number of cryptocurrency coins or tokens that are publicly available and circulating in the market, excluding those locked, reserved, or not for sale.">
@@ -177,7 +194,10 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>Price Change(24Hr)</div>
                       <span>
                         <Tooltip
@@ -211,7 +231,10 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>Price Change(1Week)</div>
                       <span>
                         <Tooltip
@@ -245,7 +268,10 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>Price Change(1Month)</div>
                       <span>
                         <Tooltip
@@ -279,7 +305,10 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-white flex gap-1 ">
+                    <div
+                      style={{ fontWeight: "300" }}
+                      className=" text-white flex gap-1 "
+                    >
                       <div>Price Change(1Year)</div>
                       <span>
                         <Tooltip title="The 1-year price change percent measures the percentage change in the price of a cryptocurrency over the past year, highlighting its long-term market trends and performance.">
@@ -314,7 +343,7 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
             </div>
             <div
               style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-              className="border w-1/2   rounded-lg border-gray-200 shadow-2xl p-4 pr-0"
+              className=" w-1/2   rounded-lg border-gray-200 shadow-2xl p-4 pr-0"
             >
               <div className="  ">
                 <ul className="flex gap-8  font-bold text-white cursor-pointer">
@@ -389,11 +418,13 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
                               return (
                                 <>
                                   <div
-                                    className="p-2 border  rounded-lg border-gray-200 shadow-2xl"
+                                    className="p-2   rounded-lg border-gray-200 shadow-2xl"
                                     style={{
                                       backgroundColor:
                                         EColors.PRIMARYBACKGROUND,
                                       color: "white",
+                                      fontFamily: "Inter",
+                                      fontWeight: "200",
                                     }}
                                   >
                                     <div>
@@ -438,8 +469,12 @@ The all-time low (ATL) of a cryptocurrency is the lowest price it has ever reach
             </div>
           </div>
           <div
-            style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-            className=" border text-white  rounded-lg border-gray-200 shadow-2xl mt-10"
+            style={{
+              backgroundColor: EColors.SECONDARYBACKGROUND,
+              fontFamily: "Inter",
+              fontWeight: "200",
+            }}
+            className="  text-white  rounded-lg  shadow-2xl mt-10"
           >
             <div
               className={`${styles.description} p-10 text-lg`}

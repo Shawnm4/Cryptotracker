@@ -22,6 +22,8 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
           style: {
             backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
+            fontFamily: "Inter",
+            fontWeight: 200,
           },
         };
       },
@@ -54,7 +56,11 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
             <div
               className="text-xl hidden lg:flex"
               onClick={() => setActiveCoinForDashboard(record)}
-              style={{ whiteSpace: "nowrap" }}
+              style={{
+                whiteSpace: "nowrap",
+                fontFamily: "Inter",
+                fontWeight: 300,
+              }}
             >
               <div className="flex w-2/12 gap-6 ">
                 <img src={`${record.image}`} />
@@ -90,6 +96,8 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
           style: {
             backgroundColor: EColors.SECONDARYBACKGROUND,
             color: "white",
+            fontFamily: "Inter",
+            fontWeight: 200,
           },
         };
       },
@@ -120,14 +128,18 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
         {
           return record.price_change_percentage_24h > 0 ? (
             <div className="flex gap-1 text-xl 2xl:text-3xl">
-              <div>{record.price_change_percentage_24h.toFixed(2)}%</div>
+              <div style={{ fontFamily: "Inter", fontWeight: "200" }}>
+                {record.price_change_percentage_24h.toFixed(2)}%
+              </div>
               <div style={{ color: EColors.PRIMARY }}>
                 <RiseOutlined />
               </div>
             </div>
           ) : (
             <div className="flex gap-1 text-xl 2xl:text-3xl">
-              <div>{record.price_change_percentage_24h.toFixed(2)}%</div>
+              <div style={{ fontFamily: "Inter", fontWeight: "200" }}>
+                {record.price_change_percentage_24h.toFixed(2)}%
+              </div>
               <div style={{ color: "red" }}>
                 <FallOutlined />
               </div>
@@ -151,6 +163,7 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
       render: (record) => {
         return (
           <div
+            style={{ fontFamily: "Inter", fontWeight: "200" }}
             className="text-xl w-full 2xl:text-3xl"
             onClick={() => setActiveCoinForDashboard(record)}
           >

@@ -1,6 +1,6 @@
 export enum EColors {
   PRIMARY = "#40c057",
-  PRIMARYBACKGROUND = " black",
-  SECONDARYBACKGROUND = "#212529",
+  PRIMARYBACKGROUND = "    #1f1c2b",
+  SECONDARYBACKGROUND = " #3c394a",
   BORDERGRAY = "#ced4da",
 }

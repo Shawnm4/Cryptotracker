@@ -37,14 +37,13 @@ export default function Home() {
       <div className="hidden  2xl:inline-block">
         <header
           style={{
-            backgroundColor: EColors.SECONDARYBACKGROUND,
-            borderColor: EColors.BORDERGRAY,
+            backgroundColor: EColors.PRIMARYBACKGROUND,
           }}
-          className="flex justify-center  items-center font-medium border-b  "
+          className="flex justify-center  items-center font-medium  "
         >
           <h1
             style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
-            className="text-3xl text-center"
+            className="text-4xl text-center my-10 drop-shadow-2xl"
           >
             <div>
               Explore the Top 50 Cryptocurrencies Rankings & Real-Time Market
@@ -55,11 +54,14 @@ export default function Home() {
 
         {!activeCoin ? (
           <section
-            style={{ backgroundColor: "black" }}
+            style={{
+              backgroundColor: EColors.PRIMARYBACKGROUND,
+              color: "white",
+            }}
             className="flex justify-center h-screen"
           >
             <div className="w-5/6 rounded-md ">
-              <div className=" cursor-pointer rounded-md shadow-xl mt-10 bg-red-700">
+              <div className=" cursor-pointer rounded-md shadow-2xl mt-10 bg-red-700">
                 <DataTabel
                   setActiveCoinForDashboard={setActiveCoinForDashboard}
                   data={coinData?.data}
