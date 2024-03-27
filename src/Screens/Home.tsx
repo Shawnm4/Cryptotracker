@@ -8,7 +8,7 @@ import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 import MobileCoinDashboard from "./MobileCoinDashboard";
 import TabletCoinDashboard from "./TabletCoinDashboard";
 import lodash from "lodash";
-import showErrorNotification from "../CustomAntTools/Buttons/Notifications/Notifications";
+
 import Spinner from "../CustomAntTools/Buttons/Spinner";
 
 export default function Home() {
