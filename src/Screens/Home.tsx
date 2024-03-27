@@ -8,6 +8,8 @@ import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 import MobileCoinDashboard from "./MobileCoinDashboard";
 import TabletCoinDashboard from "./TabletCoinDashboard";
 import lodash from "lodash";
+import showErrorNotification from "../CustomAntTools/Buttons/Notifications/Notifications";
+import Spinner from "../CustomAntTools/Buttons/Spinner";
 
 export default function Home() {
   interface CoinObject {
@@ -16,7 +18,7 @@ export default function Home() {
 
   const [activeCoin, setActiveCoin] = useState<any>("");
   const [mobileActiveCoin, setMobileActiveCoin] = useState<any>("");
-  const { data: coinData } = useGetCoinData();
+  const { data: coinData, isLoading: tableIsLoading } = useGetCoinData();
 
   function setActiveCoinForDashboard(coinObj: CoinObject) {
     setActiveCoin(coinObj);
@@ -34,12 +36,12 @@ export default function Home() {
   }
   return (
     <>
-      <div className="hidden  2xl:inline-block">
+      <div className="hidden w-full  2xl:inline-block">
         <header
           style={{
             backgroundColor: EColors.PRIMARYBACKGROUND,
           }}
-          className="flex justify-center  items-center font-medium  "
+          className="flex justify-center  w-full items-center font-medium  "
         >
           <h1
             style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
@@ -61,11 +63,13 @@ export default function Home() {
             className="flex justify-center h-screen"
           >
             <div className="w-5/6 rounded-md ">
-              <div className=" cursor-pointer rounded-md shadow-2xl mt-10 bg-red-700">
-                <DataTabel
-                  setActiveCoinForDashboard={setActiveCoinForDashboard}
-                  data={coinData?.data}
-                />
+              <div className=" cursor-pointer rounded-md shadow-2xl mt-10 ">
+                <Spinner spinning={tableIsLoading}>
+                  <DataTabel
+                    setActiveCoinForDashboard={setActiveCoinForDashboard}
+                    data={coinData?.data}
+                  />
+                </Spinner>
               </div>
             </div>
           </section>
