@@ -18,6 +18,7 @@ import { Tooltip as RechartsTooltip } from "recharts";
 
 import { Empty } from "antd";
 import Spinner from "../CustomAntTools/Buttons/Spinner";
+import { addLetterToEndOfNumber } from "./Helpers/Helperfunctions";
 
 export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const {
@@ -83,7 +84,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
             <div className="">
               <PrimaryButton
                 onClick={() => clearActiveCoin()}
-                className="w-44 h-12 text-xl shadow-xl border-0  rounded-none"
+                className="w-44 h-12 text-xl shadow-xl border-0  rounded"
               >
                 &larr; Go Back
               </PrimaryButton>
@@ -127,14 +128,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                           </span>
                         </div>
                         <div className="text-2xl">
-                          $
-                          {activeCoin?.market_cap?.toString().length > 9
-                            ? `${(
-                                Number(activeCoin?.market_cap) / 1000000000
-                              )?.toFixed(1)}B`
-                            : `${(
-                                Number(activeCoin?.market_cap) / 1000000
-                              )?.toFixed(1)}M`}{" "}
+                          ${addLetterToEndOfNumber(activeCoin?.market_cap)}
                         </div>
                       </div>
                       <div>
@@ -202,8 +196,13 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                               </Tooltip>
                             </span>
                           </div>
-                          <div className="text-2xl">
-                            {activeCoin?.circulating_supply?.toFixed(2)}
+                          <div className="text-2xl flex gap-2">
+                            <div>
+                              {addLetterToEndOfNumber(
+                                activeCoin?.circulating_supply
+                              )}
+                            </div>
+                            {activeCoin.symbol.toUpperCase()}
                           </div>
                         </div>
                       </div>
@@ -387,129 +386,131 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
               className=" w-1/2   rounded-lg border-gray-200 shadow-2xl p-4 "
             >
               {!graphError ? (
-                <Spinner spinning={graphIsLoading}>
-                  <div className="  ">
-                    <ul className="flex gap-8  font-bold text-white cursor-pointer">
-                      <li>
-                        <PrimaryButton
-                          style={{
-                            backgroundColor:
-                              activeButton === 1 ? "black" : EColors.PRIMARY,
-                          }}
-                          className="border-0 shadow-x text-white"
-                          onClick={() => handleClick(1, 1)}
-                        >
-                          1Day
-                        </PrimaryButton>
-                      </li>
-                      <li>
-                        <PrimaryButton
-                          style={{
-                            backgroundColor:
-                              activeButton === 2 ? "black" : EColors.PRIMARY,
-                          }}
-                          className="border-0 shadow-xl text-white"
-                          onClick={() => handleClick(2, 7)}
-                        >
-                          1Week
-                        </PrimaryButton>
-                      </li>
-                      <li>
-                        <PrimaryButton
-                          style={{
-                            backgroundColor:
-                              activeButton === 3 ? "black" : EColors.PRIMARY,
-                          }}
-                          className="border-0  shadow-xl text-white"
-                          onClick={() => handleClick(3, 30)}
-                        >
-                          1Month
-                        </PrimaryButton>
-                      </li>
-                      <li>
-                        <PrimaryButton
-                          style={{
-                            backgroundColor:
-                              activeButton === 4 ? "black" : EColors.PRIMARY,
-                          }}
-                          className="border-0 shadow-xl text-white"
-                          onClick={() => handleClick(4, 365)}
-                        >
-                          1Year
-                        </PrimaryButton>
-                      </li>
-                    </ul>
-                    <div className=" ">
-                      <div className="w-full h-full">
-                        <ResponsiveContainer width="100%" aspect={3}>
-                          <AreaChart
-                            data={lineObjectsSubtracted}
-                            margin={{
-                              top: 10,
-                              right: 30,
-                              left: 0,
-                              bottom: 0,
-                            }}
-                          >
-                            <XAxis hide={true} dataKey="name" />
-                            <YAxis hide={true} />
-                            <RechartsTooltip
-                              content={({ payload }) => {
-                                if (payload?.length) {
-                                  const item = payload[0].payload;
+                <div className="  ">
+                  <ul className="flex gap-8  font-bold text-white cursor-pointer">
+                    <li>
+                      <PrimaryButton
+                        style={{
+                          backgroundColor:
+                            activeButton === 1 ? "black" : EColors.PRIMARY,
+                        }}
+                        className="border-0 shadow-x text-white"
+                        onClick={() => handleClick(1, 1)}
+                      >
+                        1Day
+                      </PrimaryButton>
+                    </li>
+                    <li>
+                      <PrimaryButton
+                        style={{
+                          backgroundColor:
+                            activeButton === 2 ? "black" : EColors.PRIMARY,
+                        }}
+                        className="border-0 shadow-xl text-white"
+                        onClick={() => handleClick(2, 7)}
+                      >
+                        1Week
+                      </PrimaryButton>
+                    </li>
+                    <li>
+                      <PrimaryButton
+                        style={{
+                          backgroundColor:
+                            activeButton === 3 ? "black" : EColors.PRIMARY,
+                        }}
+                        className="border-0  shadow-xl text-white"
+                        onClick={() => handleClick(3, 30)}
+                      >
+                        1Month
+                      </PrimaryButton>
+                    </li>
+                    <li>
+                      <PrimaryButton
+                        style={{
+                          backgroundColor:
+                            activeButton === 4 ? "black" : EColors.PRIMARY,
+                        }}
+                        className="border-0 shadow-xl text-white"
+                        onClick={() => handleClick(4, 365)}
+                      >
+                        1Year
+                      </PrimaryButton>
+                    </li>
+                  </ul>
 
-                                  return (
-                                    <>
-                                      <div
-                                        className="p-2   rounded-lg border-gray-200 shadow-2xl"
-                                        style={{
-                                          backgroundColor:
-                                            EColors.PRIMARYBACKGROUND,
-                                          color: "white",
-                                          fontFamily: "Inter",
-                                          fontWeight: "200",
-                                        }}
-                                      >
-                                        <div>
-                                          Date:{" "}
-                                          {new Date(
-                                            item.date
-                                          ).toLocaleDateString("en-US", {
+                  <Spinner spinning={graphIsLoading}>
+                    <div
+                      style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
+                      className="w-full h-full shadow-2xl  rounded-xl mt-3 "
+                    >
+                      <ResponsiveContainer width="100%" aspect={3}>
+                        <AreaChart
+                          data={lineObjectsSubtracted}
+                          margin={{
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                          }}
+                        >
+                          <XAxis hide={true} dataKey="name" />
+                          <YAxis hide={true} />
+                          <RechartsTooltip
+                            content={({ payload }) => {
+                              if (payload?.length) {
+                                const item = payload[0].payload;
+
+                                return (
+                                  <>
+                                    <div
+                                      className="p-2   rounded-lg border-gray-200 shadow-2xl"
+                                      style={{
+                                        backgroundColor:
+                                          EColors.PRIMARYBACKGROUND,
+                                        color: "white",
+                                        fontFamily: "Inter",
+                                        fontWeight: "200",
+                                      }}
+                                    >
+                                      <div>
+                                        Date:{" "}
+                                        {new Date(item.date).toLocaleDateString(
+                                          "en-US",
+                                          {
                                             month: "numeric",
                                             day: "numeric",
                                             year: "numeric",
-                                          })}
-                                        </div>
-                                        <div>
-                                          Price: $
-                                          {(
-                                            Number(
-                                              Number(item.name).toFixed(2)
-                                            ) + Number(minItem?.name)
-                                          ).toFixed(2)}
-                                        </div>
+                                          }
+                                        )}
                                       </div>
-                                    </>
-                                  );
-                                }
+                                      <div>
+                                        Price: $
+                                        {(
+                                          Number(Number(item.name).toFixed(2)) +
+                                          Number(minItem?.name)
+                                        ).toFixed(2)}
+                                      </div>
+                                    </div>
+                                  </>
+                                );
+                              }
 
-                                return null;
-                              }}
-                            />
+                              return null;
+                            }}
+                          />
 
-                            <Area
-                              type="monotone"
-                              dataKey="name"
-                              stroke={EColors.PRIMARY}
-                              fill={EColors.PRIMARY}
-                              strokeWidth={2}
-                            />
-                          </AreaChart>
-                        </ResponsiveContainer>
-                      </div>
+                          <Area
+                            type="monotone"
+                            dataKey="name"
+                            stroke={EColors.PRIMARY}
+                            fill={EColors.PRIMARY}
+                            strokeWidth={3}
+                          />
+                        </AreaChart>
+                      </ResponsiveContainer>
                     </div>
-                  </div>
-                </Spinner>
+                  </Spinner>
+                </div>
               ) : (
                 <div className="flex justify-center  ">
                   <div className=" ">

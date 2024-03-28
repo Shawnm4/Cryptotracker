@@ -5,7 +5,7 @@ import styles from "./MobileCoinDashboard.module.css";
 import useGetCoinDataById from "../Hooks/useGetCoinDataById";
 import { Empty } from "antd";
 import Spinner from "../CustomAntTools/Buttons/Spinner";
-
+import { addLetterToEndOfNumber } from "./Helpers/Helperfunctions";
 export default function MobileCoinDashboard({
   activeCoin,
   clearMobileActiveCoin,
@@ -108,19 +108,13 @@ any) {
                 style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
                 className="w-11/12 flex justify-center border  rounded-lg border-gray-200 shadow-2xl"
               >
-                <div className="grid grid-cols-2 grid-rows-4 gap-14   p-6 ">
+                <div className="grid grid-cols-2 grid-rows-4 gap-8   p-3 ">
                   <div>
                     <div className=" font-bold text-xl whitespace-nowrap ">
                       Market Cap
                     </div>
                     <div className="text-2xl whitespace-nowrap">
-                      {activeCoin?.market_cap?.toString().length > 9
-                        ? `${(
-                            Number(activeCoin?.market_cap) / 1000000000
-                          )?.toFixed(1)}B`
-                        : `${(
-                            Number(activeCoin?.market_cap) / 1000000
-                          )?.toFixed(1)}M`}{" "}
+                      ${addLetterToEndOfNumber(activeCoin?.market_cap)}
                     </div>
                   </div>
                   <div>
@@ -136,7 +130,8 @@ any) {
                       Circulating Supply
                     </div>
                     <div className="text-2xl whitespace-nowrap">
-                      {activeCoin?.circulating_supply?.toFixed(2)}
+                      {addLetterToEndOfNumber(activeCoin?.circulating_supply)}{" "}
+                      {activeCoin.symbol.toUpperCase()}
                     </div>
                   </div>
                   <div>
@@ -274,24 +269,32 @@ any) {
           className="text-white flex justify-center "
         >
           <div>
-            <div className="mt-14 ">
-              <Empty description="" />
-              <div className="flex justify-center">
-                <div
-                  className="text-md w-1/2 flex justify-center text-center "
-                  style={{ fontFamily: "Inter", color: "white" }}
-                >
-                  <div>
-                    The coingecko API request limit has been reached. Please
-                    wait a minute before trying again. For more information,
-                    visit the{" "}
-                    <a
-                      href="https://www.coingecko.com/en/api"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Coingecko API documentation.
-                    </a>
+            <PrimaryButton
+              onClick={() => clearMobileActiveCoin()}
+              className="w-32 h-12 text-lg shadow-xl border-0 mt-6 ml-6  "
+            >
+              &larr; Go Back
+            </PrimaryButton>
+            <div>
+              <div className="mt-14 ">
+                <Empty description="" />
+                <div className="flex justify-center">
+                  <div
+                    className="text-md w-1/2 flex justify-center text-center "
+                    style={{ fontFamily: "Inter", color: "white" }}
+                  >
+                    <div>
+                      The coingecko API request limit has been reached. Please
+                      wait a minute before trying again. For more information,
+                      visit the{" "}
+                      <a
+                        href="https://www.coingecko.com/en/api"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Coingecko API documentation.
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

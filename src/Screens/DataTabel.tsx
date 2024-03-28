@@ -64,7 +64,10 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
             >
               <div className="flex w-2/12 gap-6 ">
                 <img src={`${record.image}`} />
-                <div className="self-center  2xl:text-2xl ">
+                <div
+                  style={{ fontFamily: "Orbitron" }}
+                  className="self-center  2xl:text-2xl "
+                >
                   {record.name.toUpperCase()}
                 </div>
               </div>
