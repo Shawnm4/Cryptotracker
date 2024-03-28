@@ -34,6 +34,7 @@ export default function Home() {
   function clearMobileActiveCoin() {
     setMobileActiveCoin("");
   }
+
   return (
     <>
       <div className="hidden w-full  2xl:inline-block">
@@ -152,15 +153,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-            </div>
-            <div
-              style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
-              className="flex justify-center"
-            >
-              <div
-                className="text-white  mt-10 "
-                style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
-              ></div>
             </div>
           </>
         ) : (
