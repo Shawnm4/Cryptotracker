@@ -153,8 +153,8 @@ any) {
                 height: "100%",
               }}
             >
-              <Spinner spinning={isLoading}>
-                <div style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}>
+              <div style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}>
+                <Spinner spinning={isLoading}>
                   <div className="grid grid-cols-2 grid-rows-4 gap-10 p-10 border  rounded-lg border-gray-200 shadow-2xl">
                     <div>
                       <div className="md:text-4xl mb-2">Market Cap</div>
@@ -284,8 +284,8 @@ any) {
                       </div>
                     </div>
                   </div>{" "}
-                </div>
-              </Spinner>
+                </Spinner>
+              </div>
             </div>
             <div
               className="text-white flex justify-center mt-10"
@@ -298,16 +298,16 @@ any) {
                 style={{ backgroundColor: EColors.SECONDARYBACKGROUND }}
                 className="w-3/4  p-6 border  rounded-lg border-gray-200 shadow-2xl "
               >
-                <Spinner spinning={isLoading}>
-                  <div>
+                <div>
+                  <Spinner spinning={isLoading}>
                     <div
                       className={`${styles.description} text-4xl p-5 leading-loose  `}
                       dangerouslySetInnerHTML={{
                         __html: coinData?.data?.description?.en,
                       }}
                     />
-                  </div>
-                </Spinner>
+                  </Spinner>
+                </div>
               </div>
             </div>
           </div>
