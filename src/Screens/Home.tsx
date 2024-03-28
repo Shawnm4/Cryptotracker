@@ -10,6 +10,7 @@ import TabletCoinDashboard from "./TabletCoinDashboard";
 import lodash from "lodash";
 
 import Spinner from "../CustomAntTools/Buttons/Spinner";
+import { Empty } from "antd";
 
 export default function Home() {
   interface CoinObject {
@@ -18,13 +19,12 @@ export default function Home() {
 
   const [activeCoin, setActiveCoin] = useState<any>("");
   const [mobileActiveCoin, setMobileActiveCoin] = useState<any>("");
-  const { data: coinData, isLoading: tableIsLoading } = useGetCoinData();
+  const { data: coinData, isLoading: tableIsLoading, error } = useGetCoinData();
 
   function setActiveCoinForDashboard(coinObj: CoinObject) {
     setActiveCoin(coinObj);
   }
   function setMobileActiveCoinForDashboard(coinObj: CoinObject) {
-    console.log(coinObj);
     setMobileActiveCoin(coinObj);
   }
   function clearActiveCoin() {
@@ -106,17 +106,52 @@ export default function Home() {
                   </div>
                 </h1>
               </header>
-              <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
-                {coinData?.data?.map((coin: any) => (
-                  <CoinListItem
-                    key={lodash.uniqueId()}
-                    coinData={coin}
-                    setMobileActiveCoinForDashboard={
-                      setMobileActiveCoinForDashboard
-                    }
-                  />
-                ))}
-              </div>
+              {!error ? (
+                <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
+                  {coinData?.data?.map((coin: any) => (
+                    <CoinListItem
+                      key={lodash.uniqueId()}
+                      coinData={coin}
+                      setMobileActiveCoinForDashboard={
+                        setMobileActiveCoinForDashboard
+                      }
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    backgroundColor: EColors.PRIMARYBACKGROUND,
+                    height: "100vh",
+                  }}
+                  className="text-white flex justify-center "
+                >
+                  <div>
+                    <div className="mt-14 ">
+                      <Empty description="" />
+                      <div className="flex justify-center">
+                        <div
+                          className="text-md w-1/2 flex justify-center text-center "
+                          style={{ fontFamily: "Inter", color: "white" }}
+                        >
+                          <div>
+                            The coingecko API request limit has been reached.
+                            Please wait a minute before trying again. For more
+                            information, visit the{" "}
+                            <a
+                              href="https://www.coingecko.com/en/api"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Coingecko API documentation.
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div
               style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
@@ -158,17 +193,54 @@ export default function Home() {
               </div>
             </h1>
           </header>
-          <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
-            {coinData?.data?.map((coin: any) => (
-              <CoinListItem
-                key={lodash.uniqueId()}
-                coinData={coin}
-                setMobileActiveCoinForDashboard={
-                  setMobileActiveCoinForDashboard
-                }
-              />
-            ))}
-          </div>
+          {!error ? (
+            <Spinner className="mt-20" spinning={tableIsLoading} size="large">
+              <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
+                {coinData?.data?.map((coin: any) => (
+                  <CoinListItem
+                    key={lodash.uniqueId()}
+                    coinData={coin}
+                    setMobileActiveCoinForDashboard={
+                      setMobileActiveCoinForDashboard
+                    }
+                  />
+                ))}
+              </div>
+            </Spinner>
+          ) : (
+            <div
+              style={{
+                backgroundColor: EColors.PRIMARYBACKGROUND,
+                height: "100vh",
+              }}
+              className="text-white flex justify-center "
+            >
+              <div>
+                <div className="mt-14 ">
+                  <Empty description="" />
+                  <div className="flex justify-center">
+                    <div
+                      className="text-md w-1/2 flex justify-center text-center "
+                      style={{ fontFamily: "Inter", color: "white" }}
+                    >
+                      <div>
+                        The coingecko API request limit has been reached. Please
+                        wait a minute before trying again. For more information,
+                        visit the{" "}
+                        <a
+                          href="https://www.coingecko.com/en/api"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Coingecko API documentation.
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <MobileCoinDashboard
