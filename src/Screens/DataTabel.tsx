@@ -2,6 +2,7 @@ import { ConfigProvider, Table } from "antd";
 import type { TableProps } from "antd";
 import { EColors } from "../Enums/EColors";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
+import { addLetterToEndOfNumber } from "./Helpers/Helperfunctions";
 interface DataType {
   rank: string;
   name: string;
@@ -170,9 +171,7 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
             className="text-xl w-full 2xl:text-3xl"
             onClick={() => setActiveCoinForDashboard(record)}
           >
-            {record.market_cap.toString().length > 9
-              ? `$${(Number(record.market_cap) / 1000000000).toFixed(1)}B`
-              : `$${(Number(record.market_cap) / 1000000).toFixed(1)}M`}{" "}
+            ${addLetterToEndOfNumber(record.market_cap)}
           </div>
         );
       },
@@ -194,7 +193,7 @@ export default function DataTabel({ data, setActiveCoinForDashboard }: any) {
       }}
     >
       <Table
-        scroll={{ y: 700 }}
+        scroll={{ y: 600 }}
         columns={columns}
         dataSource={data}
         pagination={false}

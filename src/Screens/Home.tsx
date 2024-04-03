@@ -11,6 +11,7 @@ import lodash from "lodash";
 
 import Spinner from "../CustomAntTools/Buttons/Spinner";
 import { Empty } from "antd";
+import TopNavBar from "./TopNavBar";
 
 export default function Home() {
   interface CoinObject {
@@ -36,49 +37,53 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div>
       <div className="hidden w-full  2xl:inline-block">
-        <header
-          style={{
-            backgroundColor: EColors.PRIMARYBACKGROUND,
-          }}
-          className="flex justify-center  w-full items-center font-medium  "
-        >
-          <h1
-            style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
-            className="text-4xl text-center my-10 drop-shadow-2xl"
-          >
-            <div>
-              Explore the Top 50 Cryptocurrencies Rankings & Real-Time Market
-              Data
-            </div>
-          </h1>
-        </header>
-
         {!activeCoin ? (
-          <section
-            style={{
-              backgroundColor: EColors.PRIMARYBACKGROUND,
-              color: "white",
-            }}
-            className="flex justify-center h-screen"
-          >
-            <div className="w-5/6 rounded-md ">
-              <div className=" cursor-pointer rounded-md shadow-2xl mt-10 ">
-                <Spinner spinning={tableIsLoading}>
-                  <DataTabel
-                    setActiveCoinForDashboard={setActiveCoinForDashboard}
-                    data={coinData?.data}
-                  />
-                </Spinner>
+          <>
+            <TopNavBar />
+            <header
+              style={{
+                backgroundColor: EColors.PRIMARYBACKGROUND,
+              }}
+              className="flex justify-center  w-full items-center font-medium  "
+            >
+              <h1
+                style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
+                className="text-4xl text-center my-10 drop-shadow-2xl"
+              >
+                <div>
+                  Explore the Top 25 Cryptocurrencies Rankings & Real-Time
+                  Market Data
+                </div>
+              </h1>
+            </header>
+            <section
+              style={{
+                backgroundColor: EColors.PRIMARYBACKGROUND,
+                color: "white",
+              }}
+              className="flex justify-center h-screen "
+            >
+              <div className="w-5/6 rounded-md ">
+                <div className=" cursor-pointer rounded-md shadow-2xl  ">
+                  <Spinner spinning={tableIsLoading}>
+                    <DataTabel
+                      setActiveCoinForDashboard={setActiveCoinForDashboard}
+                      data={coinData?.data}
+                    />
+                  </Spinner>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </>
         ) : (
-          <CoinDashboard
-            activeCoin={activeCoin}
-            clearActiveCoin={clearActiveCoin}
-          />
+          <div>
+            <CoinDashboard
+              activeCoin={activeCoin}
+              clearActiveCoin={clearActiveCoin}
+            />
+          </div>
         )}
       </div>
       {/* Tablet */}
@@ -102,7 +107,7 @@ export default function Home() {
                   className="text-3xl text-center"
                 >
                   <div>
-                    Explore the Top 50 Cryptocurrencies Rankings & Real-Time
+                    Explore the Top 25 Cryptocurrencies Rankings & Real-Time
                     Market Data
                   </div>
                 </h1>
@@ -168,23 +173,6 @@ export default function Home() {
       {/* CellPhone */}
       {!mobileActiveCoin ? (
         <div className="md:hidden">
-          <header
-            style={{
-              backgroundColor: EColors.SECONDARYBACKGROUND,
-              borderColor: EColors.BORDERGRAY,
-            }}
-            className="flex justify-center  items-center font-medium border-b  "
-          >
-            <h1
-              style={{ color: "white", fontFamily: "Inter", fontWeight: 200 }}
-              className="text-3xl text-center"
-            >
-              <div>
-                Explore the Top 50 Cryptocurrencies Rankings & Real-Time Market
-                Data
-              </div>
-            </h1>
-          </header>
           {!error ? (
             <Spinner className="mt-20" spinning={tableIsLoading} size="large">
               <div style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}>
@@ -240,7 +228,7 @@ export default function Home() {
           clearMobileActiveCoin={clearMobileActiveCoin}
         />
       )}
-    </>
+    </div>
   );
 }
 
@@ -257,14 +245,18 @@ function CoinListItem({ coinData, setMobileActiveCoinForDashboard }: any) {
             #{coinData.market_cap_rank}
           </div>
           <div className="flex gap-2 ">
-            <div className="w-2/12">
+            <div className="w-8 md:w-10 ">
               <img src={coinData.image} />
             </div>
             <div>
-              <div className="md:text-xl font-bold text-lg">
-                {coinData.name.toUpperCase()}
+              <div className="md:hidden  text-2xl ">
+                {coinData.symbol.toUpperCase()}
               </div>
-              <div className="md:text-lg">{coinData.symbol.toUpperCase()}</div>
+            </div>
+            <div>
+              <div className="hidden md:inline-block   text-2xl ">
+                {coinData.id.toUpperCase()}
+              </div>
             </div>
           </div>
           <div>

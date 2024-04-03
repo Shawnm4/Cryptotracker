@@ -5,9 +5,8 @@ import TopNavBar from "./TopNavBar";
 export default function Layout() {
   return (
     <>
-      <TopNavBar />
       <main className="flex">
-        <Content className="w-full   ">
+        <Content className="w-full">
           <Outlet />
         </Content>
       </main>

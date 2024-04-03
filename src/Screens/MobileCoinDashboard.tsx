@@ -40,63 +40,14 @@ any) {
               <div className="font-bold self-center ">
                 {activeCoin.id.toUpperCase()}
               </div>
-              <div className="self-center ">
-                {activeCoin.symbol.toUpperCase()}
-              </div>
             </div>
             <Spinner spinning={isLoading}>
-              <div className="mt-10">
+              <div className="mt-2">
                 <div className="text-2xl">
                   {activeCoin.symbol.toUpperCase()} Price
                 </div>
                 <div className="mt-2 text-4xl">
                   ${activeCoin.current_price.toFixed(2)}
-                </div>
-                <div className="flex mt-2 gap-2">
-                  <div className="">
-                    {activeCoin.price_change_24h > 0 ? (
-                      <div
-                        style={{ color: EColors.PRIMARY }}
-                        className="flex gap-1 text-xl"
-                      >
-                        <div>{activeCoin.price_change_24h.toFixed(2)}$</div>
-                        <div>
-                          <RiseOutlined />
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        style={{ color: "red" }}
-                        className="flex gap-1 text-xl"
-                      >
-                        <div>
-                          {activeCoin.price_change_percentage_24h.toFixed(2)}$
-                        </div>
-                        <div style={{ color: "red" }}>
-                          <FallOutlined />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    {activeCoin.price_change_24h > 0 ? (
-                      <div
-                        style={{ color: EColors.PRIMARY }}
-                        className="flex gap-1 text-xl"
-                      >
-                        <div>({activeCoin.price_change_24h.toFixed(2)}%)</div>
-                      </div>
-                    ) : (
-                      <div
-                        style={{ color: "red" }}
-                        className="flex gap-1 text-xl"
-                      >
-                        <div>
-                          ({activeCoin.price_change_percentage_24h.toFixed(2)}%)
-                        </div>
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>
             </Spinner>

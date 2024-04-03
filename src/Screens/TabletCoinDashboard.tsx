@@ -3,7 +3,10 @@ import { EColors } from "../Enums/EColors";
 import useGetCoinDataById from "../Hooks/useGetCoinDataById";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 import styles from "./TabletCoinDashboard.module.css";
-import { addLetterToEndOfNumber } from "./Helpers/Helperfunctions";
+import {
+  addLetterToEndOfNumber,
+  decimalThousandsCommaSeparated,
+} from "./Helpers/Helperfunctions";
 import { Empty } from "antd";
 import Spinner from "../CustomAntTools/Buttons/Spinner";
 
@@ -78,68 +81,13 @@ any) {
                     {activeCoin.id.toUpperCase()}
                   </div>
                 </div>
-                <div className="mt-10">
+                <div className="">
                   <Spinner spinning={isLoading}>
                     <div className="text-4xl">
                       {activeCoin.symbol.toUpperCase()} Price
                     </div>
                     <div className="mt-2 text-4xl">
                       ${activeCoin.current_price.toLocaleString()}
-                    </div>
-                    <div className="flex mt-2 gap-2">
-                      <div className="">
-                        {activeCoin.price_change_24h > 0 ? (
-                          <div
-                            style={{ color: EColors.PRIMARY }}
-                            className="flex gap-2 text-4xl"
-                          >
-                            <div>{activeCoin.price_change_24h.toFixed(2)}$</div>
-                            <div>
-                              <RiseOutlined />
-                            </div>
-                          </div>
-                        ) : (
-                          <div
-                            style={{ color: "red" }}
-                            className="flex gap-2 text-4xl"
-                          >
-                            <div>
-                              {activeCoin.price_change_percentage_24h.toFixed(
-                                2
-                              )}
-                              $
-                            </div>
-                            <div style={{ color: "red" }}>
-                              <FallOutlined />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      <div>
-                        {activeCoin.price_change_24h > 0 ? (
-                          <div
-                            style={{ color: EColors.PRIMARY }}
-                            className="flex gap-2 text-4xl"
-                          >
-                            <div>
-                              ({activeCoin.price_change_24h.toFixed(2)}%)
-                            </div>
-                          </div>
-                        ) : (
-                          <div
-                            style={{ color: "red" }}
-                            className="flex gap-1 text-4xl"
-                          >
-                            <div>
-                              (
-                              {activeCoin.price_change_percentage_24h.toFixed(
-                                2
-                              )}
-                              %)
-                            </div>
-                          </div>
-                        )}
-                      </div>
                     </div>
                   </Spinner>
                 </div>
@@ -168,7 +116,7 @@ any) {
                         <div className="mr-5">All Time High</div>
                       </div>
                       <div className="text-3xl">
-                        ${Number(activeCoin?.ath).toLocaleString()}
+                        ${decimalThousandsCommaSeparated(activeCoin?.ath)}
                       </div>
                     </div>
                     <div>

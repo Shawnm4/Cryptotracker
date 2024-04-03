@@ -18,7 +18,10 @@ import { Tooltip as RechartsTooltip } from "recharts";
 
 import { Empty } from "antd";
 import Spinner from "../CustomAntTools/Buttons/Spinner";
-import { addLetterToEndOfNumber } from "./Helpers/Helperfunctions";
+import {
+  addLetterToEndOfNumber,
+  decimalThousandsCommaSeparated,
+} from "./Helpers/Helperfunctions";
 
 export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   const {
@@ -76,10 +79,13 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
   return (
     <>
       <section
-        style={{ height: "100%", backgroundColor: EColors.PRIMARYBACKGROUND }}
+        style={{
+          height: "100%",
+          backgroundColor: EColors.PRIMARYBACKGROUND,
+        }}
         className=" hidden  2xl:flex w-full justify-center h-screen "
       >
-        <div className="w-11/12 mt-14">
+        <div className="w-11/12 mt-20 h-screen ">
           <div className="flex gap-96 ">
             <div className="">
               <PrimaryButton
@@ -143,7 +149,9 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                             </Tooltip>
                           </span>
                         </div>
-                        <div className="text-2xl">${activeCoin?.ath}</div>
+                        <div className="text-2xl">
+                          ${decimalThousandsCommaSeparated(activeCoin?.ath)}
+                        </div>
                       </div>
                       <div>
                         <div
