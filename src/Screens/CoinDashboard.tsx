@@ -80,12 +80,12 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
     <>
       <section
         style={{
-          height: "100%",
+          height: "100vh",
           backgroundColor: EColors.PRIMARYBACKGROUND,
         }}
         className=" hidden  2xl:flex w-full justify-center h-screen "
       >
-        <div className="w-11/12 mt-20 h-screen ">
+        <div className="w-11/12 mt-20  ">
           <div className="flex gap-96 ">
             <div className="">
               <PrimaryButton
@@ -405,7 +405,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                         className="border-0 shadow-x text-white"
                         onClick={() => handleClick(1, 1)}
                       >
-                        1Day
+                        1 Day
                       </PrimaryButton>
                     </li>
                     <li>
@@ -417,7 +417,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                         className="border-0 shadow-xl text-white"
                         onClick={() => handleClick(2, 7)}
                       >
-                        1Week
+                        1 Week
                       </PrimaryButton>
                     </li>
                     <li>
@@ -429,7 +429,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                         className="border-0  shadow-xl text-white"
                         onClick={() => handleClick(3, 30)}
                       >
-                        1Month
+                        1 Month
                       </PrimaryButton>
                     </li>
                     <li>
@@ -441,7 +441,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                         className="border-0 shadow-xl text-white"
                         onClick={() => handleClick(4, 365)}
                       >
-                        1Year
+                        1 Year
                       </PrimaryButton>
                     </li>
                   </ul>
@@ -554,12 +554,12 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
               fontFamily: "Inter",
               fontWeight: "200",
             }}
-            className="  text-white  rounded-lg  shadow-2xl mt-10"
+            className="  text-white  rounded-lg  shadow-2xl my-10"
           >
             {!idError ? (
               <Spinner spinning={coinStatsIsLoading} size="large">
                 <div
-                  className={`${styles.description} p-10 text-lg my-10 `}
+                  className={`${styles.description} p-10 text-lg mt-10 `}
                   dangerouslySetInnerHTML={{
                     __html: coinData?.data?.description?.en,
                   }}
