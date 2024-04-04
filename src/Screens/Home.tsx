@@ -78,7 +78,12 @@ export default function Home() {
             </section>
           </>
         ) : (
-          <div>
+          <div
+            style={{
+              backgroundColor: EColors.SECONDARYBACKGROUND,
+            }}
+            className="h-screen "
+          >
             <CoinDashboard
               activeCoin={activeCoin}
               clearActiveCoin={clearActiveCoin}

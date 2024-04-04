@@ -6,7 +6,7 @@ import {
   FallOutlined,
 } from "@ant-design/icons";
 import useGetCoinDataById from "../Hooks/useGetCoinDataById";
-import styles from "./MobileCoinDashboard.module.css";
+import styles from "./CoinDashboard.module.css";
 import Tooltip from "../CustomAntTools/Buttons/ToolTips/ToolTip";
 import { XAxis, YAxis, AreaChart, Area, ResponsiveContainer } from "recharts";
 import useGetCoinGraphData from "../Hooks/useGetCoinGraphData";
@@ -80,12 +80,11 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
     <>
       <section
         style={{
-          height: "100vh",
           backgroundColor: EColors.PRIMARYBACKGROUND,
         }}
-        className=" hidden  2xl:flex w-full justify-center h-screen "
+        className=" hidden  2xl:flex w-full justify-center h-screen   "
       >
-        <div className="w-11/12 mt-20  ">
+        <div className="w-11/12 mt-20 h-screen ">
           <div className="flex gap-96 ">
             <div className="">
               <PrimaryButton
@@ -554,7 +553,7 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
               fontFamily: "Inter",
               fontWeight: "200",
             }}
-            className="  text-white  rounded-lg  shadow-2xl my-10"
+            className="  text-white  rounded-lg  shadow-2xl my-10 "
           >
             {!idError ? (
               <Spinner spinning={coinStatsIsLoading} size="large">

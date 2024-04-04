@@ -2,7 +2,7 @@
 
 ## ChainSight is an app designed to keep you updated on the current crypto market stats.
 
-## The goals of this project were -
+## Goals of this project.
 
 - Practice good project management and wireframing.
 
@@ -10,7 +10,7 @@
 
 * Get experience using postman.
 
-* Practice using external libraries.
+* Practice using external libraries, e.g., Ant Design for the table and buttons and Recharts for the area chart.
 * Develop better design and UI/UX practices.
 
 #
