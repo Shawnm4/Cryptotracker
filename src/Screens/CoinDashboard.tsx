@@ -446,6 +446,15 @@ export default function CoinDashboard({ activeCoin, clearActiveCoin }: any) {
                   </ul>
 
                   <Spinner spinning={graphIsLoading}>
+                    <div style={{ color: EColors.PRIMARY }} className="mt-4">
+                      {activeCoin.symbol.toUpperCase()} Price
+                    </div>
+                    <div
+                      style={{ fontWeight: "400" }}
+                      className="text-white  text-4xl"
+                    >
+                      ${activeCoin.current_price.toFixed(2)}
+                    </div>
                     <div
                       style={{ backgroundColor: EColors.PRIMARYBACKGROUND }}
                       className="w-full h-full shadow-2xl  rounded-xl mt-3 "
